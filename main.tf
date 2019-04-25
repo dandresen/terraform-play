@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "gw" {
 
 # this is not the main route table
 # need to associate the pub subnet with the main rt
-# use below to associate priv sub with nat 
+# use below to associate priv sub with nat
 # main route table
 resource "aws_route_table" "mainRt" {
   vpc_id = "${aws_vpc.mainVpc.id}"
@@ -35,10 +35,16 @@ resource "aws_route_table" "mainRt" {
   }
 }
 
+# assocaite subnet with route table
+resource "aws_route_table_association" "rt-assoc" {
+    subnet_id = "${aws_subnet.public.id}"
+    route_table_id = "${aws_route_table.mainRt.id}"
+}
+
 # subnets
 # public subnet
 resource "aws_subnet" "public" {
-  vpc_id            = "${aws_vpc.mainVpc.id}"
+  vpc_id           = "${aws_vpc.mainVpc.id}"
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-2a"
 
