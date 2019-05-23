@@ -2,3 +2,8 @@ ignore/*
 .terraform/*
 *.tfvars
 *.tfstate*
+pub_ip_address.txt
+ec2swarm/*.tfvars
+ec2swarm/*.tfstate*
+ec2swarm/.terraform/*
+ec2swarm/pub_ip_address.txt
